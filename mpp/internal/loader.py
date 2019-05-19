@@ -9,7 +9,7 @@ import mpp.api
 
 import os
 import sys
-import ConfigParser
+import configparser
 import re
 import optparse
 
@@ -72,7 +72,7 @@ class Loader(object):
                 if os.path.isdir(fname):
                     active_plugins += load_recursively(inicontainer, fname)
                 elif re.match(pattern, fname):
-                    config = ConfigParser.ConfigParser()
+                    config = configparser.ConfigParser()
                     config.read(fname)
                     item = {'package': config.get('Plugin', 'package'),
                             'module': config.get('Plugin', 'module'),
@@ -96,7 +96,7 @@ class Loader(object):
             return active_plugins
                         
         def list_dependants_recursively(inicontainer, required_plugin_name):
-            assert required_plugin_name in inicontainer.hash.keys(), \
+            assert required_plugin_name in list(inicontainer.hash.keys()), \
                 "depends section requires unknown plugin: " + required_plugin_name
             item = inicontainer.hash[required_plugin_name]
             if item['depends'] in ('None', 'none', 'False', 'false'):

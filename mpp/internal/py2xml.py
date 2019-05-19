@@ -60,7 +60,7 @@ class Py2XML():
         attrStr = ""    # attribute string of this level
         childStr = ""   # XML string of this level's children
 
-        for k, v in pyDictObj.items():
+        for k, v in list(pyDictObj.items()):
 
             if isinstance( v, dict ):
                 # child tags, with attributes

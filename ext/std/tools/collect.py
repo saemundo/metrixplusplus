@@ -114,7 +114,7 @@ class DirectoryReader():
     def run(self, plugin, directory):
         
         IS_TEST_MODE = False
-        if 'METRIXPLUSPLUS_TEST_MODE' in os.environ.keys():
+        if 'METRIXPLUSPLUS_TEST_MODE' in list(os.environ.keys()):
             IS_TEST_MODE = True
 
         def run_per_file(plugin, fname, full_path):
